@@ -27,15 +27,17 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+        working-directory: Industrial Project Showcase Page
 
       - name: Build
         run: npm run build
+        working-directory: Industrial Project Showcase Page
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: Industrial Project Showcase Page/dist
 
   deploy:
     environment:
