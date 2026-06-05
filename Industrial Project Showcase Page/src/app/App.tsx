@@ -2,14 +2,16 @@ import { useState } from "react";
 import { StickyGallery } from "./components/StickyGallery";
 import { SpecificationsPanel } from "./components/SpecificationsPanel";
 import { OverviewPanel } from "./components/OverviewPanel";
+import { MethodsPanel } from "./components/MethodsPanel";
+import { GraphPanel } from "./components/GraphPanel";
 import { PricingPanel } from "./components/PricingPanel";
-import { ChevronRight, Settings, BarChart3, Globe2, Award } from "lucide-react";
+import { ChevronRight, Settings, BarChart3, Globe2, Award, BookOpen, FlaskConical, TrendingUp, Table2 } from "lucide-react";
 
-type Tab = "specs" | "overview";
+type Tab = "intro" | "methods" | "graph" | "results";
 
 export default function App() {
   {/* MARKER-MAKE-KIT-INVOKED */}
-  const [activeTab, setActiveTab] = useState<Tab>("specs");
+  const [activeTab, setActiveTab] = useState<Tab>("intro");
 
   return (
     <div style={{ minHeight: "100vh", background: "#f4f6f8", fontFamily: "'IBM Plex Sans', sans-serif" }}>
@@ -124,25 +126,28 @@ export default function App() {
           }}>
             <div style={{ display: "flex", borderBottom: "1px solid #f0f2f5" }}>
               {[
-                { id: "specs" as Tab, label: "Featured Specifications", icon: Settings },
-                { id: "overview" as Tab, label: "Overview", icon: BarChart3 },
+                { id: "intro" as Tab, label: "Introduction", icon: BookOpen },
+                { id: "methods" as Tab, label: "Methods & Formulas", icon: FlaskConical },
+                { id: "graph" as Tab, label: "McCabe-Thiele Graph", icon: TrendingUp },
+                { id: "results" as Tab, label: "Design Results", icon: Table2 },
               ].map(({ id, label, icon: Icon }) => (
                 <button
                   key={id}
                   onClick={() => setActiveTab(id)}
                   style={{
-                    flex: 1, padding: "14px 24px", border: "none", cursor: "pointer",
-                    background: "transparent", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                    flex: 1, padding: "14px 12px", border: "none", cursor: "pointer",
+                    background: "transparent", display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
                     borderBottom: activeTab === id ? "2px solid #0F62FE" : "2px solid transparent",
                     marginBottom: "-1px",
                     transition: "all 0.15s",
                     fontFamily: "'IBM Plex Sans', sans-serif",
                   }}
                 >
-                  <Icon size={16} style={{ color: activeTab === id ? "#0F62FE" : "#9ca3af" }} />
+                  <Icon size={15} style={{ color: activeTab === id ? "#0F62FE" : "#9ca3af", flexShrink: 0 }} />
                   <span style={{
-                    fontSize: "14px", fontWeight: 600,
+                    fontSize: "13px", fontWeight: 600,
                     color: activeTab === id ? "#0F62FE" : "#6b7280",
+                    whiteSpace: "nowrap",
                   }}>
                     {label}
                   </span>
@@ -152,7 +157,10 @@ export default function App() {
 
             {/* Tab Content */}
             <div style={{ padding: "28px" }}>
-              {activeTab === "specs" ? <SpecificationsPanel /> : <OverviewPanel />}
+              {activeTab === "intro" && <OverviewPanel />}
+              {activeTab === "methods" && <MethodsPanel />}
+              {activeTab === "graph" && <GraphPanel />}
+              {activeTab === "results" && <SpecificationsPanel />}
             </div>
           </div>
         </div>

@@ -3,11 +3,6 @@ export function OverviewPanel() {
     title: string;
     content?: string;
     list?: { title: string; desc: string }[];
-    table?: {
-      headers: string[];
-      rows: string[][];
-      cols?: string;
-    };
   };
 
   const sections: TableSection[] = [
@@ -28,14 +23,6 @@ Anaerobic fermentation is carried out by Saccharomyces cerevisiae in four parall
 The dilute fermentation broth (8.06 wt% ethanol, xF = 0.0332) is fed as a saturated liquid (q = 1.0) to a continuous sieve-tray distillation column designed using the McCabe-Thiele graphical method with ethanol-water vapor-liquid equilibrium (VLE) data at 1 atm.`,
     },
     {
-      title: "Distillation Column Design",
-      content: `Based on the overall material balance, the feed, distillate, and bottoms molar flow rates were calculated as 2,123 kmol/h, 77.9 kmol/h, and 2,045 kmol/h, respectively. The minimum reflux ratio was determined as Rmin = 3.40, and the operating reflux ratio was set at R = 4.42 (1.3 × Rmin).
-
-The McCabe-Thiele step-off procedure yielded 15 theoretical stages (including the reboiler), corresponding to 14 ideal stages within the column shell. Applying an overall Murphree tray efficiency of 70%, the number of actual physical sieve trays was calculated as 20, with the optimal feed tray identified at stage 7 from the top.
-
-Column hydraulic sizing was conducted separately for the rectifying and stripping sections using the Souders-Brown flooding velocity correlation with an 80% safety factor. The top section vapor and liquid mass flow rates were 18,201 kg/h and 14,843 kg/h respectively, yielding a flooding velocity of 2.084 m/s and an operating velocity of 1.667 m/s. The final design column diameter is 1.80 m and total column height is 13.0 m. Distillate purity is 95.6 wt% ethanol (xD = 0.8948) with ethanol loss in the bottoms restricted to 0.1 wt% (xB = 0.000391).`,
-    },
-    {
       title: "Key Advantages",
       list: [
         { title: "High-Yield Fermentation", desc: "Four parallel bioreactors (552 m³ each) achieve 90% glucose-to-ethanol conversion with Saccharomyces cerevisiae at an optimal 30–32°C operating temperature." },
@@ -45,21 +32,6 @@ Column hydraulic sizing was conducted separately for the rectifying and strippin
         { title: "Optimized Reflux Ratio", desc: "Operating reflux ratio R = 4.42 set at 1.3 × Rmin balances separation efficiency with energy consumption, applied across 20 actual column trays." },
         { title: "Large-Scale Output", desc: "Designed for 100,000 L/day continuous production (33 million L/year over 330 operating days), targeting domestic renewable fuel demand from corn dry-milling feedstock." },
       ],
-    },
-    {
-      title: "Economic Summary",
-      table: {
-        headers: ["Cost Item", "Description", "Value (TL)"],
-        cols: "2fr 3fr 1fr",
-        rows: [
-          ["Core Equipment Purchase Cost", "Distillation column, hydrolysis tank, 4× fermentation vessels", "4,737,339"],
-          ["Material Module Factor (MMF)", "Equipment material correction factor applied: 0.71", "—"],
-          ["Labor Module Factor (LMF)", "Installation labor correction factor applied: 0.42", "—"],
-          ["Grassroots Capital (Cgr)", "Total factored capital cost estimation (Lang method)", "23,744,741"],
-          ["Working Capital Reserve", "15% of Grassroots Capital reserve allocation", "3,561,711"],
-          ["Total Capital Cost", "Cgr including 15% working capital reserve", "27,306,452"],
-        ],
-      },
     },
   ];
 
@@ -95,62 +67,8 @@ Column hydraulic sizing was conducted separately for the rectifying and strippin
               ))}
             </div>
           )}
-
-          {section.table && (
-            <div style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.08)", borderRadius: "6px", overflow: "hidden" }}>
-              <div style={{ display: "grid", gridTemplateColumns: section.table.cols || "2fr 3fr 80px 120px", background: "#1a1a2e", padding: "8px 16px" }}>
-                {section.table.headers.map((h) => (
-                  <div key={h} style={{ fontSize: "11px", fontWeight: 600, color: "#fff", letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "'IBM Plex Mono', monospace" }}>{h}</div>
-                ))}
-              </div>
-              {section.table.rows.map((row, ri) => (
-                <div key={ri} style={{
-                  display: "grid", gridTemplateColumns: section.table!.cols || "2fr 3fr 80px 120px",
-                  borderBottom: ri < section.table!.rows.length - 1 ? "1px solid #f0f2f5" : "none",
-                  background: ri % 2 === 0 ? "#fff" : "#fafbfc",
-                }}>
-                  {row.map((cell, ci) => (
-                    <div key={ci} style={{
-                      padding: "9px 16px",
-                      fontSize: "12px",
-                      color: ci === 0 ? "#1a1a2e" : "#4b5563",
-                      fontWeight: ci === 0 ? 500 : 400,
-                      fontFamily: ci >= 2 ? "'IBM Plex Mono', monospace" : "'IBM Plex Sans', sans-serif",
-                    }}>{cell}</div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       ))}
-
-      {/* McCabe-Thiele Diagram */}
-      <div style={{ marginBottom: "36px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
-          <div style={{ width: "3px", height: "18px", background: "#0F62FE", borderRadius: "2px" }} />
-          <h3 style={{ fontSize: "15px", fontWeight: 600, color: "#1a1a2e", margin: 0 }}>McCabe-Thiele Diagram</h3>
-        </div>
-        <div style={{
-          background: "#fff", border: "1px solid rgba(0,0,0,0.08)", borderRadius: "6px",
-          padding: "32px", display: "flex", alignItems: "center", justifyContent: "center",
-          minHeight: "200px", position: "relative", overflow: "hidden",
-        }}>
-          <img
-            src={`${import.meta.env.BASE_URL}images/image2.jpeg`}
-            alt="McCabe-Thiele diagram for distillation column design"
-            style={{ width: "100%", height: "220px", objectFit: "contain", borderRadius: "4px", opacity: 0.85, background: "#ffffff" }}
-          />
-          <div style={{
-            position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(15,98,254,0.08) 0%, transparent 60%)",
-            display: "flex", alignItems: "flex-end", padding: "16px",
-          }}>
-            <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'IBM Plex Mono', monospace" }}>
-              FIG. 1 — McCabe-Thiele Diagram for Distillation Column Design · Ethanol-Water VLE at 1 atm
-            </span>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
