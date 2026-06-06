@@ -1,4 +1,5 @@
 import image2Img from "../../imports/image2.jpeg";
+import grafikImg from "../../imports/grafik.jpeg";
 
 export function GraphPanel() {
   const annotationRows = [
@@ -29,6 +30,15 @@ export function GraphPanel() {
         A total of 15 theoretical stages were determined, with the optimal feed location identified
         at stage 7 from the top.
       </p>
+
+      {/* grafik.jpeg image */}
+      <div style={{ marginBottom: "20px" }}>
+        <img
+          src={grafikImg}
+          alt="McCabe-Thiele VLE graph"
+          style={{ width: "100%", borderRadius: "6px", display: "block" }}
+        />
+      </div>
 
       {/* Graph image */}
       <div style={{
