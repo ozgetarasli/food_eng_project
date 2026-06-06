@@ -54,6 +54,18 @@ export function MethodsPanel() {
           An overall Murphree tray efficiency of 70% is then applied to obtain the number of actual physical trays.
         </p>
 
+        {/* McCabe-Thiele diagram title and description */}
+        <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#1a1a2e", margin: "0 0 10px 0" }}>
+          McCabe-Thiele Diagram — Ethanol-Water Distillation Column
+        </h4>
+        <p style={{ fontSize: "13px", color: "#4b5563", lineHeight: 1.75, margin: "0 0 16px 0" }}>
+          The diagram below shows the application of the McCabe-Thiele stage-counting method on the
+          ethanol-water vapor-liquid equilibrium (VLE) curve at 1 atm. The rectifying and stripping
+          section operating lines, the feed (q) line, and the theoretical stage steps are all shown.
+          A total of 15 theoretical stages were determined, with the optimal feed location identified
+          at stage 7 from the top.
+        </p>
+
         {/* McCabe-Thiele diagram */}
         <div style={{
           background: "#fff", border: "1px solid rgba(0,0,0,0.08)", borderRadius: "8px",
